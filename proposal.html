@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>GoldenMoney — Website Redesign Proposal</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{font-family:'Inter',sans-serif;color:#1C1C1A;-webkit-font-smoothing:antialiased}
+
+:root{
+  --gold:#B8972E;
+  --gold-l:#D4AF57;
+  --gold-p:#F5EDD6;
+  --dark:#111110;
+  --mid:#2A2A28;
+  --text:#1C1C1A;
+  --muted:#6B6B66;
+  --border:#E4E4DF;
+  --bg:#FAFAF8;
+  --white:#FFFFFF;
+  --serif:'EB Garamond',Georgia,serif;
+}
+
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");pointer-events:none;z-index:999}
+
+.deck{width:100vw;height:100vh;position:relative;overflow:hidden}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:52px 80px 84px;opacity:0;pointer-events:none;transition:opacity 0.45s ease,transform 0.45s ease;transform:translateY(20px)}
+.slide.active{opacity:1;pointer-events:all;transform:translateY(0)}
+.slide.exit{opacity:0;transform:translateY(-20px)}
+
+.bg-cream{background:var(--bg)}
+.bg-white{background:var(--white)}
+.bg-dark{background:var(--dark)}
+.bg-gold{background:linear-gradient(135deg,#8B6914,#B8972E 50%,#D4AF57)}
+.bg-warm{background:#FEFCF5}
+
+.inner{position:relative;z-index:1;max-width:1060px;margin:0 auto;width:100%}
+
+/* DECORATIVE LINE */
+.rule{width:48px;height:2px;background:var(--gold);margin-bottom:22px}
+.rule.light{background:var(--gold-l)}
+.rule.center{margin:0 auto 22px}
+
+/* TYPE */
+.eyebrow{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block}
+.eyebrow.light{color:rgba(255,255,255,0.45)}
+.eyebrow.gold-light{color:rgba(255,255,255,0.7)}
+
+h1{font-family:var(--serif);font-size:clamp(40px,6vw,72px);font-weight:400;line-height:1.02;letter-spacing:-0.01em;color:var(--text);margin-bottom:16px}
+h1.light{color:var(--white)}
+h1 em{font-style:italic;color:var(--gold)}
+h1.light em{color:var(--gold-l)}
+h2{font-family:var(--serif);font-size:clamp(28px,4vw,50px);font-weight:400;line-height:1.08;letter-spacing:-0.01em;color:var(--text);margin-bottom:12px}
+h2.light{color:var(--white)}
+h2 em{font-style:italic;color:var(--gold)}
+h2.light em{color:var(--gold-l)}
+.lead{font-size:clamp(13px,1.3vw,15px);line-height:1.85;color:var(--muted);max-width:580px;margin-bottom:22px}
+.lead.light{color:rgba(255,255,255,0.62)}
+
+/* STAT BAR */
+.stat-bar{display:flex;border:1px solid var(--border);margin-bottom:28px}
+.stat-bar.dark{border-color:rgba(255,255,255,0.1)}
+.st{flex:1;padding:16px 20px;text-align:center;border-right:1px solid var(--border)}
+.stat-bar.dark .st{border-right-color:rgba(255,255,255,0.08)}
+.st:last-child{border-right:none}
+.sv{font-family:var(--serif);font-size:clamp(20px,2.5vw,30px);font-weight:500;color:var(--gold);line-height:1}
+.stat-bar.dark .sv{color:var(--gold-l)}
+.sl{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:5px}
+.stat-bar.dark .sl{color:rgba(255,255,255,0.3)}
+
+/* GRIDS */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border)}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border)}
+.g2.dk{background:rgba(255,255,255,0.08)}
+.g3.dk{background:rgba(255,255,255,0.08)}
+
+/* CARDS */
+.card{background:var(--white);padding:22px 24px}
+.card.warm{background:var(--bg)}
+.card.dark{background:rgba(255,255,255,0.05)}
+.card.gold-bg{background:rgba(184,151,46,0.08)}
+.card.green-bg{background:#F0FDF4}
+.card.red-bg{background:#FEF2F2}
+.card .ci{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:block}
+.card.dark .ci{color:var(--gold-l)}
+.card h3{font-family:var(--serif);font-size:17px;font-weight:500;color:var(--text);margin-bottom:6px}
+.card.dark h3{color:var(--white)}
+.card p{font-size:12.5px;color:var(--muted);line-height:1.65}
+.card.dark p{color:rgba(255,255,255,0.5)}
+
+/* ROW LIST */
+.rl{border-top:1px solid var(--border)}
+.ri{display:flex;gap:14px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--border)}
+.ri:last-child{border-bottom:none}
+.rn{font-family:var(--serif);font-size:18px;font-weight:500;color:var(--gold);width:22px;flex-shrink:0;line-height:1.2}
+.ri h4{font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px}
+.ri p{font-size:12px;color:var(--muted);line-height:1.6}
+
+/* CHECK LIST */
+.cl{display:flex;flex-direction:column;gap:8px}
+.ci2{display:flex;gap:11px;align-items:flex-start;padding:10px 14px;border:1px solid}
+.ci2.done{background:#F0FDF4;border-color:#BBF7D0}
+.ci2.gone{background:#FEF2F2;border-color:#FECACA}
+.ci2.add{background:rgba(184,151,46,0.06);border-color:rgba(184,151,46,0.25)}
+.ci2 .ico{font-size:14px;flex-shrink:0;margin-top:1px}
+.ci2 h4{font-size:12.5px;font-weight:600;margin-bottom:1px}
+.ci2.done h4{color:#166534}
+.ci2.gone h4{color:#991B1B}
+.ci2.add h4{color:#8B6914}
+.ci2 p{font-size:11.5px;color:var(--muted);line-height:1.5}
+.badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:0;margin-left:6px;vertical-align:middle}
+.bd{background:#DCFCE7;color:#166534}
+.br{background:#FEE2E2;color:#991B1B}
+.bg{background:rgba(184,151,46,0.12);color:#8B6914}
+
+/* BEFORE/AFTER */
+.before-after{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
+.ba-col{background:var(--white);padding:24px}
+.ba-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px;display:block}
+.ba-col.before .ba-label{color:#991B1B}
+.ba-col.after .ba-label{color:#166534}
+.ba-item{font-size:12.5px;color:var(--muted);padding:8px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;line-height:1.5}
+.ba-item:last-child{border-bottom:none}
+.ba-item .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.before .dot{background:#FECACA}
+.after .dot{background:#BBF7D0}
+
+/* TIMELINE */
+.tl{display:flex;position:relative;margin:18px 0 6px}
+.tl::before{content:'';position:absolute;top:18px;left:2%;right:2%;height:1px;background:var(--border);z-index:0}
+.ts{flex:1;text-align:center;position:relative;z-index:1}
+.tc{width:36px;height:36px;background:var(--bg);border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 9px;font-family:var(--serif);font-size:11px;font-weight:600;color:var(--gold)}
+.ts h4{font-size:11px;font-weight:600;color:var(--text);margin-bottom:2px}
+.ts p{font-size:10px;color:var(--muted)}
+
+/* CALLOUT */
+.callout{border-left:3px solid var(--gold);background:var(--gold-p);padding:14px 18px;margin-top:16px}
+.callout p{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--text);line-height:1.75}
+.callout.dark{border-left-color:var(--gold-l);background:rgba(184,151,46,0.1)}
+.callout.dark p{color:rgba(255,255,255,0.8)}
+
+/* PRICE BOX */
+.price-box{border:1px solid var(--border);padding:28px;text-align:center}
+.price-big{font-family:var(--serif);font-size:clamp(64px,9vw,100px);font-weight:400;color:var(--text);line-height:1;letter-spacing:-0.04em}
+.price-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:8px;font-weight:500}
+
+/* DELIVERABLES */
+.deliv-list{display:flex;flex-direction:column;gap:0}
+.deliv{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);padding:10px 0;border-bottom:1px solid var(--border)}
+.deliv:last-child{border-bottom:none}
+.deliv::before{content:'◈';color:var(--gold);font-size:10px;flex-shrink:0}
+
+/* NAV */
+.nav{position:fixed;bottom:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:12px 48px;transition:all 0.3s}
+.nav.light{background:rgba(250,250,248,0.97);backdrop-filter:blur(16px);border-top:1px solid var(--border)}
+.nav.dark{background:rgba(17,17,16,0.97);backdrop-filter:blur(16px);border-top:1px solid rgba(255,255,255,0.07)}
+.dots{display:flex;gap:6px}
+.dot{width:7px;height:7px;border-radius:50%;cursor:pointer;transition:all 0.25s;border:none;padding:0}
+.nav.light .dot{background:var(--border)}
+.nav.light .dot.on{background:var(--gold);width:22px;border-radius:2px}
+.nav.dark .dot{background:rgba(255,255,255,0.12)}
+.nav.dark .dot.on{background:var(--gold-l);width:22px;border-radius:2px}
+.nbtn{font-size:11px;font-family:'Inter',sans-serif;padding:8px 18px;cursor:pointer;transition:all 0.15s;font-weight:500;background:transparent}
+.nav.light .nbtn{border:1px solid var(--border);color:var(--muted)}
+.nav.light .nbtn:hover:not(:disabled){border-color:var(--gold);color:var(--gold)}
+.nav.dark .nbtn{border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.4)}
+.nav.dark .nbtn:hover:not(:disabled){border-color:var(--gold-l);color:var(--gold-l)}
+.nbtn:disabled{opacity:0.2;cursor:default}
+.lbl{font-size:10px;letter-spacing:1px;text-align:center;font-family:'Inter',sans-serif;text-transform:uppercase}
+.nav.light .lbl{color:rgba(28,28,26,0.25)}
+.nav.dark .lbl{color:rgba(255,255,255,0.2)}
+.pbar{position:fixed;top:0;left:0;height:2px;background:var(--gold);z-index:300;transition:width 0.4s ease}
+
+@media(max-width:768px){
+  .slide{padding:28px 20px 80px}
+  .g2,.g3,.g4{grid-template-columns:1fr}
+  .stat-bar{flex-direction:column}
+  .st{border-right:none;border-bottom:1px solid var(--border)}
+  .before-after{grid-template-columns:1fr}
+  .tl{flex-direction:column;gap:12px}
+  .tl::before{display:none}
+  .ts{text-align:left;display:flex;gap:12px;align-items:flex-start}
+  .tc{flex-shrink:0;margin:0}
+  .nav{padding:12px 20px}
+}
+</style>
+</head>
+<body>
+<div class="pbar" id="pbar"></div>
+<div class="deck">
+
+<!-- S1 COVER -->
+<div class="slide bg-dark" id="s0">
+  <div class="inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center">
+      <div>
+        <span class="eyebrow gold-light">Website Redesign Proposal · goldenmoney.com</span>
+        <div class="rule light"></div>
+        <h1 class="light">A site worthy of<br/>the metal it <em>sells.</em></h1>
+        <p class="lead light">I read your brief fully, studied your existing site, and built a working demo before writing this proposal. No calls. No templates. No AI design.</p>
+        <div class="stat-bar dark" style="margin-top:8px">
+          <div class="st"><div class="sv">$350</div><div class="sl">Fixed Price</div></div>
+          <div class="st"><div class="sv">3</div><div class="sl">Days Delivery</div></div>
+          <div class="st"><div class="sv">0</div><div class="sl">Templates Used</div></div>
+          <div class="st"><div class="sv">100%</div><div class="sl">Custom CSS</div></div>
+        </div>
+      </div>
+      <!-- Mini site preview -->
+      <div style="border:1px solid rgba(255,255,255,0.08);padding:2px;background:rgba(255,255,255,0.03)">
+        <div style="background:#111110;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;gap:8px">
+          <div style="display:flex;gap:5px"><div style="width:8px;height:8px;border-radius:50%;background:#444"></div><div style="width:8px;height:8px;border-radius:50%;background:#444"></div><div style="width:8px;height:8px;border-radius:50%;background:#444"></div></div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.25);flex:1;text-align:center">goldenmoney.com</div>
+        </div>
+        <!-- Fake ticker -->
+        <div style="background:#0A0A09;padding:8px 16px;display:flex;gap:16px;font-size:11px;border-bottom:1px solid rgba(255,255,255,0.05)">
+          <span style="color:rgba(255,255,255,0.3);font-size:9px;letter-spacing:1px;text-transform:uppercase">LIVE PRICES</span>
+          <span style="color:#D4AF57;font-weight:600">GOLD $3,234</span>
+          <span style="color:rgba(255,255,255,0.4)">·</span>
+          <span style="color:#D4AF57;font-weight:600">SILVER $32.18</span>
+          <span style="color:rgba(255,255,255,0.4)">·</span>
+          <span style="color:#D4AF57;font-weight:600">PT $974</span>
+        </div>
+        <!-- Fake nav -->
+        <div style="background:#111110;padding:10px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.05)">
+          <span style="font-size:13px;font-weight:700;color:white;font-family:Georgia,serif">Golden<span style="color:#D4AF57">Money</span></span>
+          <div style="display:flex;gap:16px">
+            <span style="font-size:11px;color:rgba(255,255,255,0.4)">Buy</span>
+            <span style="font-size:11px;color:rgba(255,255,255,0.4)">About</span>
+            <span style="font-size:11px;color:rgba(255,255,255,0.4)">Contact</span>
+          </div>
+        </div>
+        <!-- Fake hero -->
+        <div style="background:var(--bg);padding:24px 16px;border-bottom:1px solid var(--border)">
+          <div style="font-size:10px;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px">Canada's Trusted Bullion Dealer</div>
+          <div style="font-family:Georgia,serif;font-size:22px;color:#1C1C1A;line-height:1.1;margin-bottom:10px">Gold. Silver.<br/>Platinum.</div>
+          <div style="display:flex;gap:8px;margin-top:12px">
+            <div style="background:#B8972E;color:white;font-size:11px;font-weight:600;padding:8px 14px">Browse Store</div>
+            <div style="border:1px solid #E4E4DF;color:#6B6B66;font-size:11px;font-weight:600;padding:8px 14px">Contact Us</div>
+          </div>
+        </div>
+        <!-- Fake price cards -->
+        <div style="background:#111110;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#222">
+          <div style="background:#111;padding:12px 8px;text-align:center"><div style="font-size:9px;color:rgba(255,255,255,0.3);margin-bottom:4px">GOLD</div><div style="font-size:13px;font-weight:600;color:white;font-family:Georgia,serif">$3,234</div></div>
+          <div style="background:#111;padding:12px 8px;text-align:center"><div style="font-size:9px;color:rgba(255,255,255,0.3);margin-bottom:4px">SILVER</div><div style="font-size:13px;font-weight:600;color:white;font-family:Georgia,serif">$32.18</div></div>
+          <div style="background:#111;padding:12px 8px;text-align:center"><div style="font-size:9px;color:rgba(255,255,255,0.3);margin-bottom:4px">PLATINUM</div><div style="font-size:13px;font-weight:600;color:white;font-family:Georgia,serif">$974</div></div>
+          <div style="background:#111;padding:12px 8px;text-align:center"><div style="font-size:9px;color:rgba(255,255,255,0.3);margin-bottom:4px">CAD/USD</div><div style="font-size:13px;font-weight:600;color:white;font-family:Georgia,serif">0.731</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S2 I READ THE BRIEF -->
+<div class="slide bg-white" id="s1">
+  <div class="inner">
+    <span class="eyebrow">What You Asked For</span>
+    <div class="rule"></div>
+    <h2>I read every line.<br/><em>Here's what I understood.</em></h2>
+    <p class="lead" style="margin-bottom:16px">Your brief was detailed and specific. Here's how I mapped every requirement to the demo I built:</p>
+    <div class="g2" style="gap:1px;background:var(--border)">
+      <div style="background:var(--bg);padding:24px">
+        <span style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#991B1B;display:block;margin-bottom:14px">✗ Removed — as instructed</span>
+        <div class="cl">
+          <div class="ci2 gone"><span class="ico">🗑️</span><div><h4>Sell bullion section <span class="badge br">Gone</span></h4><p>Removed from page and navigation entirely</p></div></div>
+          <div class="ci2 gone"><span class="ico">🗑️</span><div><h4>Sell scrap & price tables <span class="badge br">Gone</span></h4><p>10k 14k 18k platinum sell tables — fully removed</p></div></div>
+          <div class="ci2 gone"><span class="ico">🗑️</span><div><h4>Sell & Refinery from menu <span class="badge br">Gone</span></h4><p>Nav only shows: Buy, About, Help, Contact</p></div></div>
+          <div class="ci2 gone"><span class="ico">🗑️</span><div><h4>Existing messenger name <span class="badge br">Gone</span></h4><p>Skype reference removed completely</p></div></div>
+        </div>
+      </div>
+      <div style="background:var(--bg);padding:24px">
+        <span style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#166534;display:block;margin-bottom:14px">✓ Kept & Added — as instructed</span>
+        <div class="cl">
+          <div class="ci2 done"><span class="ico">✅</span><div><h4>Prices line stays <span class="badge bd">Kept</span></h4><p>Gold, Silver, Platinum, CAD/USD — top ticker + section</p></div></div>
+          <div class="ci2 done"><span class="ico">✅</span><div><h4>Buy bullion navigation <span class="badge bd">Kept</span></h4><p>All buy links intact — bars, coins, platinum, palladium</p></div></div>
+          <div class="ci2 add"><span class="ico">✦</span><div><h4>1 social media link picture <span class="badge bg">Added</span></h4><p>Icon link in contact section and footer</p></div></div>
+          <div class="ci2 add"><span class="ico">✦</span><div><h4>1 messaging link picture <span class="badge bg">Added</span></h4><p>Message icon link alongside social link</p></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:16px">
+      <p>"No cookie cutters, no internet templates, no WordPress templates." — Custom HTML/CSS written from scratch. No framework. No page builder. OpenCart-compatible.</p>
+    </div>
+  </div>
+</div>
+
+<!-- S3 BEFORE / AFTER -->
+<div class="slide bg-cream" id="s2">
+  <div class="inner">
+    <span class="eyebrow">Before & After</span>
+    <div class="rule"></div>
+    <h2>The <em>transformation</em> in detail.</h2>
+    <p class="lead" style="margin-bottom:20px">The existing site was built in 2013 using HTML tables. Here's exactly what changed.</p>
+    <div class="before-after">
+      <div class="ba-col before">
+        <span class="ba-label">✗ Old goldenmoney.com</span>
+        <div class="ba-item"><span class="dot"></span>HTML table-based layout — 2013 era</div>
+        <div class="ba-item"><span class="dot"></span>Not responsive — broken on mobile</div>
+        <div class="ba-item"><span class="dot"></span>Cluttered navigation with 8+ menu items</div>
+        <div class="ba-item"><span class="dot"></span>Sell tables and scrap pricing visible</div>
+        <div class="ba-item"><span class="dot"></span>Skype messenger name displayed</div>
+        <div class="ba-item"><span class="dot"></span>No typography hierarchy</div>
+        <div class="ba-item"><span class="dot"></span>Default system fonts, no design</div>
+        <div class="ba-item"><span class="dot"></span>No social or messaging links</div>
+      </div>
+      <div class="ba-col after">
+        <span class="ba-label">✓ New design</span>
+        <div class="ba-item"><span class="dot"></span>Clean semantic HTML + custom CSS</div>
+        <div class="ba-item"><span class="dot"></span>Fully responsive — mobile, tablet, desktop</div>
+        <div class="ba-item"><span class="dot"></span>Simplified nav — Buy, About, Help, Contact</div>
+        <div class="ba-item"><span class="dot"></span>Sell tables removed — buy focus only</div>
+        <div class="ba-item"><span class="dot"></span>Skype removed — clean contact section</div>
+        <div class="ba-item"><span class="dot"></span>Georgian serif + system sans hierarchy</div>
+        <div class="ba-item"><span class="dot"></span>Minimalist, premium, professional</div>
+        <div class="ba-item"><span class="dot"></span>Social + messaging icon links added</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S4 DESIGN APPROACH -->
+<div class="slide bg-white" id="s3">
+  <div class="inner">
+    <span class="eyebrow">Design Approach</span>
+    <div class="rule"></div>
+    <h2>Minimalist. Custom.<br/><em>Nothing borrowed.</em></h2>
+    <p class="lead" style="margin-bottom:20px">Every design decision was made deliberately. Here's the thinking behind the visual approach:</p>
+    <div class="g3" style="margin-bottom:1px">
+      <div class="card warm"><span class="ci">Typography</span><h3>Georgia Serif + System Sans</h3><p>Headings use Georgia — the web's most trusted editorial serif. Body uses system-ui. No Google Fonts dependency needed for OpenCart.</p></div>
+      <div class="card warm"><span class="ci">Colour</span><h3>Real Gold #B8972E</h3><p>Not yellow, not orange. The actual spectral colour of refined gold — deep, warm, credible. White space does the rest.</p></div>
+      <div class="card warm"><span class="ci">Layout</span><h3>Grid Lines, Not Cards</h3><p>Sections separated by 1px lines and white space — not rounded cards or drop shadows. Minimalist, like a financial publication.</p></div>
+    </div>
+    <div class="g3">
+      <div class="card warm"><span class="ci">Structure</span><h3>Long Scroll, Single Page</h3><p>One continuous page. Ticker → Nav → Hero → Prices → Buy → Why → About → Help → Contact → Footer. Logical flow top to bottom.</p></div>
+      <div class="card warm"><span class="ci">Code</span><h3>OpenCart-Compatible CSS</h3><p>Standard CSS variables, no preprocessor, no utility framework. Drop into OpenCart's theme file without modification.</p></div>
+      <div class="card warm"><span class="ci">Interaction</span><h3>Subtle, Not Showy</h3><p>Hover states on cards, smooth scroll, sticky nav on scroll. No GSAP, no particles. The metal sells itself.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- S5 WHAT'S IN THE DEMO -->
+<div class="slide bg-cream" id="s4">
+  <div class="inner">
+    <span class="eyebrow">The Demo</span>
+    <div class="rule"></div>
+    <h2>Built before<br/>this proposal <em>was sent.</em></h2>
+    <p class="lead" style="margin-bottom:16px">The demo is live and working. Here's every section included:</p>
+    <div class="rl">
+      <div class="ri"><div class="rn">01</div><div><h4>Live prices ticker — top bar</h4><p>Gold, Silver, Platinum, CAD/USD displayed at the very top of every page. Static values, ready to connect to a live API.</p></div></div>
+      <div class="ri"><div class="rn">02</div><div><h4>Sticky navigation</h4><p>Logo, 4 nav links (Buy, About, Help, Contact), phone number. Becomes frosted glass on scroll. Mobile hamburger menu included.</p></div></div>
+      <div class="ri"><div class="rn">03</div><div><h4>Hero section</h4><p>"Gold. Silver. Platinum." — editorial serif headline, subtext, two CTAs, and 3 trust meta stats at the bottom.</p></div></div>
+      <div class="ri"><div class="rn">04</div><div><h4>Spot price cards — dark section</h4><p>Au, Ag, Pt, CAD/USD displayed as large chemical-symbol cards. Premium, financial feel.</p></div></div>
+      <div class="ri"><div class="rn">05</div><div><h4>Buy bullion grid — 7 categories</h4><p>Gold bars, gold coins, silver bars, silver coins, platinum bars, platinum coins, palladium. Each links to the existing store.</p></div></div>
+      <div class="ri"><div class="rn">06</div><div><h4>Why GoldenMoney + About + Help + Contact</h4><p>Trust section, about blocks, 4 help cards, full contact form with subject selector, social + messaging links.</p></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- S6 PRICING -->
+<div class="slide bg-white" id="s5">
+  <div class="inner">
+    <span class="eyebrow">Investment</span>
+    <div class="rule"></div>
+    <h2>Fixed price.<br/><em>No surprises.</em></h2>
+    <div class="g2" style="gap:24px;margin-top:20px;align-items:start">
+      <div class="price-box">
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px">Complete Project</div>
+        <div class="price-big">$350</div>
+        <div class="price-label">Fixed · One Payment · Full Delivery</div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Everything included</div>
+        <div class="deliv-list">
+          <div class="deliv">Complete landing page HTML file</div>
+          <div class="deliv">Full custom CSS stylesheet</div>
+          <div class="deliv">Prices ticker — Gold, Silver, Platinum, CAD/USD</div>
+          <div class="deliv">7-category buy bullion grid</div>
+          <div class="deliv">Social media + messaging icon links</div>
+          <div class="deliv">Fully responsive — mobile, tablet, desktop</div>
+          <div class="deliv">OpenCart-compatible CSS — ready to deploy</div>
+          <div class="deliv">2 rounds of revisions</div>
+        </div>
+        <div class="callout" style="margin-top:16px">
+          <p>"No subscriptions. No monthly fees. No plugins to pay for." — One flat price, clean files handed over.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S7 TIMELINE -->
+<div class="slide bg-cream" id="s6">
+  <div class="inner">
+    <span class="eyebrow">Delivery</span>
+    <div class="rule"></div>
+    <h2>Done in <em>3 days.</em></h2>
+    <p class="lead" style="margin-bottom:18px">The demo is already built. What remains is incorporating your feedback and final assets.</p>
+    <div class="tl">
+      <div class="ts"><div class="tc">D1</div><h4>Contract</h4><p>Review demo, share feedback</p></div>
+      <div class="ts"><div class="tc">D1–2</div><h4>Revisions</h4><p>Social links, messaging, copy</p></div>
+      <div class="ts"><div class="tc">D2</div><h4>Your Assets</h4><p>Add your drawing/design input</p></div>
+      <div class="ts"><div class="tc">D3</div><h4>Final Review</h4><p>Your sign-off</p></div>
+      <div class="ts"><div class="tc">D3</div><h4>Handover</h4><p>HTML + CSS files delivered</p></div>
+    </div>
+    <div class="g3" style="margin-top:20px">
+      <div class="card"><span class="ci">Files</span><h3>Clean deliverables</h3><p>You receive index.html + style.css. Drop into OpenCart. No extra dependencies.</p></div>
+      <div class="card"><span class="ci">Revisions</span><h3>2 rounds included</h3><p>Your feedback shapes the final product. Changes made within 24 hours each round.</p></div>
+      <div class="card"><span class="ci">Ownership</span><h3>100% yours</h3><p>You own the code outright. No licensing, no attribution required, no lock-in.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- S8 CTA -->
+<div class="slide bg-dark" id="s7">
+  <div class="inner" style="text-align:center;max-width:680px">
+    <span class="eyebrow gold-light" style="display:block;text-align:center">Let's Work Together</span>
+    <div class="rule light center"></div>
+    <h1 class="light" style="font-size:clamp(36px,6vw,68px)">The demo is live.<br/><em>Let's make it yours.</em></h1>
+    <p class="lead light" style="margin:0 auto 28px">I built this before writing a single word of this proposal. That's how I work — show first, talk second. If the demo convinces you, the job is already half done.</p>
+    <div style="border:1px solid rgba(255,255,255,0.08);padding:24px;margin-bottom:24px">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(255,255,255,0.06)">
+        <div style="background:var(--dark);padding:16px;text-align:center"><div style="font-family:Georgia,serif;font-size:24px;color:var(--gold-l);margin-bottom:4px">$350</div><div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:1px;text-transform:uppercase">Fixed Price</div></div>
+        <div style="background:var(--dark);padding:16px;text-align:center"><div style="font-family:Georgia,serif;font-size:24px;color:var(--gold-l);margin-bottom:4px">3 Days</div><div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:1px;text-transform:uppercase">Delivery</div></div>
+        <div style="background:var(--dark);padding:16px;text-align:center"><div style="font-family:Georgia,serif;font-size:24px;color:var(--gold-l);margin-bottom:4px">2</div><div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:1px;text-transform:uppercase">Revision Rounds</div></div>
+      </div>
+    </div>
+    <div class="callout dark">
+      <p>One note — I noticed your brief says do not call. I haven't, and I won't. Message only.</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /deck -->
+
+<div class="nav light" id="nav">
+  <button class="nbtn" id="pb" onclick="go(-1)" disabled>← Prev</button>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:5px">
+    <div class="dots" id="dots"></div>
+    <div class="lbl" id="lbl">01 / 08</div>
+  </div>
+  <button class="nbtn" id="nb" onclick="go(1)">Next →</button>
+</div>
+
+<script>
+const TOTAL=8,slides=document.querySelectorAll('.slide');
+const DARK=[0,7];
+let cur=0;
+const dotsEl=document.getElementById('dots'),lbl=document.getElementById('lbl'),pbar=document.getElementById('pbar'),nav=document.getElementById('nav');
+for(let i=0;i<TOTAL;i++){const d=document.createElement('button');d.className='dot'+(i===0?' on':'');d.onclick=()=>goTo(i);dotsEl.appendChild(d)}
+function pad(n){return String(n).padStart(2,'0')}
+function updateUI(){
+  pbar.style.width=((cur+1)/TOTAL*100)+'%';
+  lbl.textContent=pad(cur+1)+' / '+pad(TOTAL);
+  document.getElementById('pb').disabled=cur===0;
+  document.getElementById('nb').disabled=cur===TOTAL-1;
+  dotsEl.querySelectorAll('.dot').forEach((d,i)=>d.className='dot'+(i===cur?' on':''));
+  nav.className='nav '+(DARK.includes(cur)?'dark':'light');
+}
+function goTo(n){
+  slides[cur].classList.remove('active');slides[cur].classList.add('exit');
+  const p=cur;setTimeout(()=>slides[p].classList.remove('exit'),500);
+  cur=n;slides[cur].classList.add('active');updateUI();
+}
+function go(d){goTo(Math.max(0,Math.min(TOTAL-1,cur+d)))}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')go(1);if(e.key==='ArrowLeft'||e.key==='ArrowUp')go(-1)});
+let tx=0;
+document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX});
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)go(dx<0?1:-1)});
+updateUI();
+</script>
+</body>
+</html>

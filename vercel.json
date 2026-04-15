@@ -1,1 +1,5 @@
-{}
+{
+  "rewrites": [
+    { "source": "/proposal", "destination": "/proposal.html" }
+  ]
+}

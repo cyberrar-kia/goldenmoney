@@ -176,16 +176,25 @@ h2.light em{color:var(--gold-l)}
 .pbar{position:fixed;top:0;left:0;height:2px;background:var(--gold);z-index:300;transition:width 0.4s ease}
 
 @media(max-width:768px){
-  .slide{padding:28px 20px 80px}
+  .slide{padding:24px 18px 76px;overflow-y:auto;justify-content:flex-start;padding-top:32px}
   .g2,.g3,.g4{grid-template-columns:1fr}
-  .stat-bar{flex-direction:column}
-  .st{border-right:none;border-bottom:1px solid var(--border)}
+  .stat-bar{flex-direction:row;flex-wrap:wrap}
+  .stat-bar .st{flex:1 1 45%;border-right:1px solid var(--border);border-bottom:1px solid var(--border);min-width:0}
   .before-after{grid-template-columns:1fr}
   .tl{flex-direction:column;gap:12px}
   .tl::before{display:none}
   .ts{text-align:left;display:flex;gap:12px;align-items:flex-start}
   .tc{flex-shrink:0;margin:0}
-  .nav{padding:12px 20px}
+  .nav{padding:11px 18px}
+  h1{font-size:clamp(30px,8vw,50px)}
+  h2{font-size:clamp(22px,6vw,36px)}
+  .lead{font-size:13px}
+  .price-big{font-size:clamp(48px,12vw,80px)}
+}
+@media(max-width:480px){
+  .slide{padding:20px 16px 76px}
+  .stat-bar .st{flex:1 1 100%;border-right:none}
+  .g3,.g4{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -391,24 +400,29 @@ h2.light em{color:var(--gold-l)}
   </div>
 </div>
 
-<!-- S7 TIMELINE -->
+<!-- S7 TIMELINE + REVIEW -->
 <div class="slide bg-cream" id="s6">
   <div class="inner">
-    <span class="eyebrow">Delivery</span>
+    <span class="eyebrow">Delivery & Review Process</span>
     <div class="rule"></div>
-    <h2>Done in <em>3 days.</em></h2>
-    <p class="lead" style="margin-bottom:18px">The demo is already built. What remains is incorporating your feedback and final assets.</p>
+    <h2>Done in <em>7 days.</em><br/>Here's exactly how.</h2>
+    <p class="lead" style="margin-bottom:16px">The demo is built. What follows is a structured 7-day process with two review rounds so you stay in full control.</p>
     <div class="tl">
-      <div class="ts"><div class="tc">D1</div><h4>Contract</h4><p>Review demo, share feedback</p></div>
-      <div class="ts"><div class="tc">D1–2</div><h4>Revisions</h4><p>Social links, messaging, copy</p></div>
-      <div class="ts"><div class="tc">D2</div><h4>Your Assets</h4><p>Add your drawing/design input</p></div>
-      <div class="ts"><div class="tc">D3</div><h4>Final Review</h4><p>Your sign-off</p></div>
-      <div class="ts"><div class="tc">D3</div><h4>Handover</h4><p>HTML + CSS files delivered</p></div>
+      <div class="ts"><div class="tc">D1</div><h4>Kickoff</h4><p>Contract signed, you share your drawing & design preferences</p></div>
+      <div class="ts"><div class="tc">D2–3</div><h4>Build</h4><p>Apply your design taste, social links, messaging, all adjustments</p></div>
+      <div class="ts"><div class="tc">D4</div><h4>Review 1</h4><p>You review the first version and send feedback</p></div>
+      <div class="ts"><div class="tc">D5</div><h4>Revisions</h4><p>All feedback implemented within 24 hours</p></div>
+      <div class="ts"><div class="tc">D6</div><h4>Review 2</h4><p>Final check — you confirm everything looks right</p></div>
+      <div class="ts"><div class="tc">D7</div><h4>Handover</h4><p>Clean HTML + CSS files delivered, ready for OpenCart</p></div>
     </div>
-    <div class="g3" style="margin-top:20px">
-      <div class="card"><span class="ci">Files</span><h3>Clean deliverables</h3><p>You receive index.html + style.css. Drop into OpenCart. No extra dependencies.</p></div>
-      <div class="card"><span class="ci">Revisions</span><h3>2 rounds included</h3><p>Your feedback shapes the final product. Changes made within 24 hours each round.</p></div>
-      <div class="card"><span class="ci">Ownership</span><h3>100% yours</h3><p>You own the code outright. No licensing, no attribution required, no lock-in.</p></div>
+    <div style="margin-top:18px">
+      <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px">How the review works</div>
+      <div class="rl">
+        <div class="ri"><div class="rn">01</div><div><h4>You review in your browser</h4><p>I send you a live preview link. You open it on your phone or desktop and browse through the full page at your own pace.</p></div></div>
+        <div class="ri"><div class="rn">02</div><div><h4>You tell me what to change</h4><p>Write your feedback in a message — colours, spacing, copy, sections — anything you want adjusted. Be as specific or as general as you like.</p></div></div>
+        <div class="ri"><div class="rn">03</div><div><h4>I implement within 24 hours</h4><p>Every change from your feedback list is made and a new preview link is sent. Two full rounds of this are included in the price.</p></div></div>
+        <div class="ri"><div class="rn">04</div><div><h4>You sign off</h4><p>When you're happy, I deliver the final index.html and style.css files. Drop them into OpenCart and you're live.</p></div></div>
+      </div>
     </div>
   </div>
 </div>
@@ -423,7 +437,7 @@ h2.light em{color:var(--gold-l)}
     <div style="border:1px solid rgba(255,255,255,0.08);padding:24px;margin-bottom:24px">
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(255,255,255,0.06)">
         <div style="background:var(--dark);padding:16px;text-align:center"><div style="font-family:Georgia,serif;font-size:24px;color:var(--gold-l);margin-bottom:4px">$350</div><div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:1px;text-transform:uppercase">Fixed Price</div></div>
-        <div style="background:var(--dark);padding:16px;text-align:center"><div style="font-family:Georgia,serif;font-size:24px;color:var(--gold-l);margin-bottom:4px">3 Days</div><div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:1px;text-transform:uppercase">Delivery</div></div>
+        <div style="background:var(--dark);padding:16px;text-align:center"><div style="font-family:Georgia,serif;font-size:24px;color:var(--gold-l);margin-bottom:4px">7 Days</div><div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:1px;text-transform:uppercase">Delivery</div></div>
         <div style="background:var(--dark);padding:16px;text-align:center"><div style="font-family:Georgia,serif;font-size:24px;color:var(--gold-l);margin-bottom:4px">2</div><div style="font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:1px;text-transform:uppercase">Revision Rounds</div></div>
       </div>
     </div>

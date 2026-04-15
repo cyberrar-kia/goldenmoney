@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>GoldenMoney — Precious Metals Dealer | Gold Silver Platinum</title>
+<meta name="description" content="GoldenMoney — Canada's trusted precious metals dealer. Buy gold bars, silver coins, platinum bullion. Live spot prices. Call toll free 1-855-237-2388."/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-label">LIVE PRICES</span>
+    <div class="ticker-items">
+      <span class="ticker-item"><span class="ticker-metal">GOLD</span> <span class="ticker-price" id="price-gold">$3,234.50</span> <span class="ticker-unit">USD/oz</span></span>
+      <span class="ticker-sep">·</span>
+      <span class="ticker-item"><span class="ticker-metal">SILVER</span> <span class="ticker-price" id="price-silver">$32.18</span> <span class="ticker-unit">USD/oz</span></span>
+      <span class="ticker-sep">·</span>
+      <span class="ticker-item"><span class="ticker-metal">PLATINUM</span> <span class="ticker-price" id="price-platinum">$974.00</span> <span class="ticker-unit">USD/oz</span></span>
+      <span class="ticker-sep">·</span>
+      <span class="ticker-item"><span class="ticker-metal">CAD/USD</span> <span class="ticker-price" id="price-cad">0.7312</span></span>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="logo">Golden<span>Money</span></a>
+    <ul class="nav-links">
+      <li><a href="#buy">Buy Bullion</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#help">Help</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="tel:18552372388" class="nav-phone">1-855-237-2388</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#buy" onclick="closeMenu()">Buy Bullion</a>
+  <a href="#products" onclick="closeMenu()">Products</a>
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#help" onclick="closeMenu()">Help</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+  <a href="tel:18552372388" class="mobile-phone">1-855-237-2388</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow">Canada's Trusted Bullion Dealer</p>
+    <h1>Gold. Silver.<br/>Platinum.</h1>
+    <p class="hero-sub">Buy and sell precious metals with confidence. Competitive pricing, secure transactions, and over a decade of trusted service across Canada.</p>
+    <div class="hero-actions">
+      <a href="#buy" class="btn-primary">Browse Bullion Store</a>
+      <a href="#contact" class="btn-secondary">Contact Us</a>
+    </div>
+  </div>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="meta-num">10+</span>
+      <span class="meta-label">Years in Business</span>
+    </div>
+    <div class="hero-meta-divider"></div>
+    <div class="hero-meta-item">
+      <span class="meta-num">4</span>
+      <span class="meta-label">Metals Available</span>
+    </div>
+    <div class="hero-meta-divider"></div>
+    <div class="hero-meta-item">
+      <span class="meta-num">CA</span>
+      <span class="meta-label">Based in Toronto</span>
+    </div>
+  </div>
+</section>
+
+<!-- SPOT PRICES STRIP -->
+<section class="prices-strip" id="prices">
+  <div class="section-inner">
+    <div class="prices-grid">
+      <div class="price-card">
+        <div class="price-symbol">Au</div>
+        <div class="price-metal">Gold</div>
+        <div class="price-value" id="card-gold">$3,234.50</div>
+        <div class="price-unit">USD per troy oz</div>
+      </div>
+      <div class="price-card">
+        <div class="price-symbol">Ag</div>
+        <div class="price-metal">Silver</div>
+        <div class="price-value" id="card-silver">$32.18</div>
+        <div class="price-unit">USD per troy oz</div>
+      </div>
+      <div class="price-card">
+        <div class="price-symbol">Pt</div>
+        <div class="price-metal">Platinum</div>
+        <div class="price-value" id="card-platinum">$974.00</div>
+        <div class="price-unit">USD per troy oz</div>
+      </div>
+      <div class="price-card price-card--cad">
+        <div class="price-symbol">$</div>
+        <div class="price-metal">CAD / USD</div>
+        <div class="price-value" id="card-cad">0.7312</div>
+        <div class="price-unit">Exchange rate</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUY BULLION -->
+<section class="buy-section" id="buy">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">Bullion Store</span>
+      <h2>Buy Precious Metals</h2>
+      <p>Select a category to browse our full inventory in our secure online store.</p>
+    </div>
+    <div class="buy-grid">
+      <a href="https://www.goldenmoney.com/buy-gold-bars-silver-coins-online/index.php?main_page=index&cPath=21_22" class="buy-card" target="_blank">
+        <div class="buy-card-accent"></div>
+        <div class="buy-card-symbol">Au</div>
+        <h3>Gold Bars</h3>
+        <p>Investment-grade gold bars from top refiners. Available in multiple weights.</p>
+        <span class="buy-link">Browse Gold Bars →</span>
+      </a>
+      <a href="https://www.goldenmoney.com/buy-gold-bars-silver-coins-online/index.php?main_page=index&cPath=21_23" class="buy-card" target="_blank">
+        <div class="buy-card-accent"></div>
+        <div class="buy-card-symbol">Au</div>
+        <h3>Gold Coins</h3>
+        <p>Gold Maple Leaf and other government-minted gold coins. Legal tender.</p>
+        <span class="buy-link">Browse Gold Coins →</span>
+      </a>
+      <a href="https://www.goldenmoney.com/buy-gold-bars-silver-coins-online/index.php?main_page=index&cPath=24_25" class="buy-card" target="_blank">
+        <div class="buy-card-accent"></div>
+        <div class="buy-card-symbol">Ag</div>
+        <h3>Silver Bars</h3>
+        <p>Pure silver bars in a range of sizes. Ideal for investors and collectors.</p>
+        <span class="buy-link">Browse Silver Bars →</span>
+      </a>
+      <a href="https://www.goldenmoney.com/buy-gold-bars-silver-coins-online/index.php?main_page=index&cPath=24_26" class="buy-card" target="_blank">
+        <div class="buy-card-accent"></div>
+        <div class="buy-card-symbol">Ag</div>
+        <h3>Silver Coins</h3>
+        <p>GoldenMoney silver rounds and government-issued silver coins.</p>
+        <span class="buy-link">Browse Silver Coins →</span>
+      </a>
+      <a href="https://www.goldenmoney.com/buy-gold-bars-silver-coins-online/index.php?main_page=index&cPath=27_34" class="buy-card" target="_blank">
+        <div class="buy-card-accent"></div>
+        <div class="buy-card-symbol">Pt</div>
+        <h3>Platinum Bars</h3>
+        <p>Rare platinum bars — one of the most valuable industrial and investment metals.</p>
+        <span class="buy-link">Browse Platinum Bars →</span>
+      </a>
+      <a href="https://www.goldenmoney.com/buy-gold-bars-silver-coins-online/index.php?main_page=index&cPath=27_33" class="buy-card" target="_blank">
+        <div class="buy-card-accent"></div>
+        <div class="buy-card-symbol">Pt</div>
+        <h3>Platinum Coins</h3>
+        <p>Platinum bullion coins from trusted mints. Low premiums over spot.</p>
+        <span class="buy-link">Browse Platinum Coins →</span>
+      </a>
+      <a href="https://www.goldenmoney.com/buy-gold-bars-silver-coins-online/index.php?main_page=index&cPath=35" class="buy-card" target="_blank">
+        <div class="buy-card-accent"></div>
+        <div class="buy-card-symbol">Pd</div>
+        <h3>Palladium</h3>
+        <p>Palladium bullion — a rare, high-demand industrial precious metal.</p>
+        <span class="buy-link">Browse Palladium →</span>
+      </a>
+    </div>
+    <div class="buy-cta">
+      <a href="https://www.goldenmoney.com/buy-gold-bars-silver-coins-online/index.php" class="btn-primary" target="_blank">View Full Bullion Store</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section" id="products">
+  <div class="section-inner">
+    <div class="why-grid">
+      <div class="why-text">
+        <span class="section-label">Why GoldenMoney</span>
+        <h2>Trusted. Transparent.<br/>Canadian.</h2>
+        <p>Since 2013, GoldenMoney has been a reliable partner for Canadian investors and collectors seeking fair prices on precious metals. We deal directly — no middlemen, no hidden fees.</p>
+        <a href="#contact" class="btn-secondary" style="margin-top:28px;display:inline-block">Get In Touch</a>
+      </div>
+      <div class="why-features">
+        <div class="feature-item">
+          <div class="feature-icon">◈</div>
+          <div>
+            <h4>Competitive Pricing</h4>
+            <p>Our prices are updated regularly based on live spot rates. You always know what you're paying.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">◈</div>
+          <div>
+            <h4>Secure Transactions</h4>
+            <p>Your order is handled with full discretion. Insured shipping on all bullion orders.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">◈</div>
+          <div>
+            <h4>Toronto Based</h4>
+            <p>A real business with a real address. Canadian-owned and operated since 2013.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">◈</div>
+          <div>
+            <h4>Personal Service</h4>
+            <p>Speak directly with our team by phone. No automated systems, no call centres.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">About Us</span>
+      <h2>About GoldenMoney</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-block">
+        <h3>What We Do</h3>
+        <p>GoldenMoney is a Canadian precious metals dealer specialising in the purchase of gold, silver, platinum, and palladium bullion. We serve both first-time buyers and seasoned investors looking for reliable, fairly priced metals.</p>
+        <p>We carry an extensive range of coins, bars, and rounds from the world's most respected mints and refineries — including the Royal Canadian Mint, PAMP Suisse, and more.</p>
+      </div>
+      <div class="about-block">
+        <h3>About Gold</h3>
+        <p>Gold has been the world's premier store of value for thousands of years. As a finite resource, it cannot be printed or manufactured, making it a reliable hedge against inflation and currency devaluation.</p>
+        <a href="https://www.goldenmoney.com/buy-gold-bullion-bars.php" class="text-link" target="_blank">Learn more about gold →</a>
+      </div>
+      <div class="about-block">
+        <h3>About Silver</h3>
+        <p>Silver offers investors both monetary value and industrial demand. More affordable than gold per ounce, silver provides accessible entry into precious metals investing with significant upside potential.</p>
+        <a href="https://www.goldenmoney.com/buy-silver-bullion-bars.php" class="text-link" target="_blank">Learn more about silver →</a>
+      </div>
+      <div class="about-block">
+        <h3>Selling Online</h3>
+        <p>Interested in selling your bullion? Our online quote process is simple, transparent, and fast. We provide competitive bids based on current spot prices with no obligation to proceed.</p>
+        <a href="https://www.goldenmoney.com/selling-sterling-silver-online.php" class="text-link" target="_blank">Learn about selling online →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HELP -->
+<section class="help-section" id="help">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">Help Centre</span>
+      <h2>How Can We Help?</h2>
+      <p>New to precious metals investing? Start here.</p>
+    </div>
+    <div class="help-grid">
+      <a href="https://www.goldenmoney.com/how-to-sell-gold-scrap.php" class="help-card" target="_blank">
+        <span class="help-num">01</span>
+        <h4>Selling Scrap</h4>
+        <p>How to sell scrap gold, silver, and platinum. What we accept and how to get a quote.</p>
+      </a>
+      <a href="https://www.goldenmoney.com/how-to-sell-gold-silver-bullion-online.php" class="help-card" target="_blank">
+        <span class="help-num">02</span>
+        <h4>Selling Bullion</h4>
+        <p>Step-by-step guide to selling your bullion coins and bars to GoldenMoney.</p>
+      </a>
+      <a href="https://www.goldenmoney.com/selling-sterling-silver-online.php" class="help-card" target="_blank">
+        <span class="help-num">03</span>
+        <h4>Selling Online</h4>
+        <p>How to get an online quote and complete your transaction remotely.</p>
+      </a>
+      <a href="https://www.goldenmoney.com/gold-silver-refining-online.php" class="help-card" target="_blank">
+        <span class="help-num">04</span>
+        <h4>What We Buy</h4>
+        <p>Full list of acceptable items — coins, bars, jewelry, scrap, e-scrap, and ore.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <span class="section-label" style="color:rgba(255,255,255,0.45)">Contact</span>
+        <h2 style="color:white">Get In Touch</h2>
+        <p style="color:rgba(255,255,255,0.6);max-width:360px;line-height:1.8">Our team is available to answer questions about buying, pricing, and shipping. Reach us by phone, email, or message.</p>
+        <div class="contact-methods">
+          <div class="contact-method">
+            <span class="contact-method-label">Toll Free</span>
+            <a href="tel:18552372388" class="contact-method-value">1-855-237-2388</a>
+          </div>
+          <div class="contact-method">
+            <span class="contact-method-label">Email</span>
+            <a href="https://www.goldenmoney.com/sell-gold-coins.php" class="contact-method-value" target="_blank">Send us a message →</a>
+          </div>
+          <div class="contact-method">
+            <span class="contact-method-label">Location</span>
+            <span class="contact-method-value">Toronto, Canada</span>
+          </div>
+        </div>
+        <!-- SOCIAL + MESSAGING LINKS -->
+        <div class="social-row">
+          <a href="#" class="social-link" aria-label="Social Media">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.7 5.5 4.3 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Message Us">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="contact-form-wrap">
+        <form class="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" placeholder="John"/>
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" placeholder="Smith"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="john@example.com"/>
+          </div>
+          <div class="form-group">
+            <label>Subject</label>
+            <select>
+              <option>General inquiry</option>
+              <option>Buying bullion</option>
+              <option>Pricing question</option>
+              <option>Shipping & delivery</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea rows="4" placeholder="How can we help you?"></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width:100%">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">Golden<span>Money</span></div>
+        <p>Canada's trusted precious metals dealer since 2013. Gold, silver, platinum, and palladium — bought and sold with integrity.</p>
+        <div class="footer-social">
+          <a href="#" class="social-link social-link--light" aria-label="Social Media">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.7 5.5 4.3 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+          </a>
+          <a href="#" class="social-link social-link--light" aria-label="Message Us">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-nav">
+        <div class="footer-col">
+          <h5>Buy</h5>
+          <a href="https://www.goldenmoney.com/buy-gold-bars-silver-coins-online/index.php?main_page=index&cPath=21_22" target="_blank">Gold Bars</a>
+          <a href="https://www.goldenmoney.com/buy-gold-bars-silver-coins-online/index.php?main_page=index&cPath=21_23" target="_blank">Gold Coins</a>
+          <a href="https://www.goldenmoney.com/buy-gold-bars-silver-coins-online/index.php?main_page=index&cPath=24_25" target="_blank">Silver Bars</a>
+          <a href="https://www.goldenmoney.com/buy-gold-bars-silver-coins-online/index.php?main_page=index&cPath=24_26" target="_blank">Silver Coins</a>
+          <a href="https://www.goldenmoney.com/buy-gold-bars-silver-coins-online/index.php?main_page=index&cPath=27_34" target="_blank">Platinum Bars</a>
+          <a href="https://www.goldenmoney.com/buy-gold-bars-silver-coins-online/index.php?main_page=index&cPath=35" target="_blank">Palladium</a>
+        </div>
+        <div class="footer-col">
+          <h5>About</h5>
+          <a href="https://www.goldenmoney.com/buy-gold-bullion-bars.php" target="_blank">About Gold</a>
+          <a href="https://www.goldenmoney.com/buy-silver-bullion-bars.php" target="_blank">About Silver</a>
+          <a href="https://www.goldenmoney.com/sell-silver-coins.php" target="_blank">About Us</a>
+          <a href="https://www.goldenmoney.com/silver-coins-dealer.php" target="_blank">Archive</a>
+        </div>
+        <div class="footer-col">
+          <h5>Help</h5>
+          <a href="https://www.goldenmoney.com/how-to-sell-gold-scrap.php" target="_blank">Selling Scrap</a>
+          <a href="https://www.goldenmoney.com/how-to-sell-gold-silver-bullion-online.php" target="_blank">Selling Bullion</a>
+          <a href="https://www.goldenmoney.com/selling-sterling-silver-online.php" target="_blank">Selling Online</a>
+          <a href="https://www.goldenmoney.com/sell-gold-coins.php" target="_blank">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© goldenmoney.com 2013 – 2025. All rights reserved.</span>
+      <span>Toronto, Canada · 1-855-237-2388</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Mobile menu
+function closeMenu(){document.getElementById('mobileNav').classList.remove('open');document.getElementById('hamburger').classList.remove('active')}
+document.getElementById('hamburger').addEventListener('click',function(){
+  this.classList.toggle('active');
+  document.getElementById('mobileNav').classList.toggle('open');
+});
+
+// Sticky nav
+window.addEventListener('scroll',function(){
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60);
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',function(e){
+    const t=document.querySelector(this.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
+  });
+});
+</script>
+</body>
+</html>
